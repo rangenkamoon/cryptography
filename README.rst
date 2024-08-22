@@ -1,6 +1,6 @@
 pyca/cryptography
 =================
-
+cryptography.fernet
 .. image:: https://img.shields.io/pypi/v/cryptography.svg
     :target: https://pypi.org/project/cryptography/
     :alt: Latest Version
@@ -26,7 +26,15 @@ key derivation functions. For example, to encrypt something with
 ``cryptography``'s high level symmetric encryption recipe:
 
 .. code-block:: pycon
-
+>>> from cryptography.fernet import Fernet
+>>> # Put this somewhere safe!
+>>> key = Fernet.generate_key()
+>>> f = Fernet(key)
+>>> token = f.encrypt(b"A really secret message. Not for prying eyes.")
+>>> token
+'...'
+>>> f.decrypt(token)
+'A really secret message. Not for prying eyes.'
     >>> from cryptography.fernet import Fernet
     >>> # Put this somewhere safe!
     >>> key = Fernet.generate_key()
